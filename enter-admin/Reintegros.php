@@ -69,6 +69,7 @@ if (!isset($_SESSION['admin'])) {
         </div>
 
     </div>
+    
     <div class="footer">
         <a href="https://www.sindicatoaceitero.com.ar" target="_blank" rel="noopener noreferrer">
             <img class="logo" src="./image-2-1-1024x262.png" alt="Kaizen Software Factory - Web Development">
@@ -123,6 +124,7 @@ if (!isset($_SESSION['admin'])) {
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

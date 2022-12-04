@@ -1,20 +1,34 @@
 <?php
 
 $mailAfiliado = $_POST["emailAfil"];
-$nombreAfiliado = $_POST["nombrecompleto"];
-$archivo = $_POST["archivo"];
 
+$formater = array("-","/");
+$nombreAfiliado = str_replace($formater," ", $_POST["nombrecompleto"]);
 
-// the message
-$msg = `Estimado afiliado ${nombreAfiliado} se ha habilitado un `;
+$archivo = $_FILES['archivo'];
 
-// use wordwrap() if lines are longer than 70 characters
-$msg = wordwrap($msg,70);
+$body = "Estimado afiliado $nombreAfiliado le informamos 
+que ha recibido un reintegro en su obra social";
 
-//cabecera
-$cabecera = 'From: info@sindicatoaceitero.com.ar' . "\r\n" .'Reply-To: info@sindicatoaceitero.com.ar';
+require '../phpMailer/Exception.php';
+require '../phpMailer/PHPMailer.php';
 
-// send email
-mail($mailAfiliado,"Reintegros",$msg,$cabecera);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-?>
+$mail = new PHPMailer(true);
+
+try {
+    $mail->setFrom('info@sindicatoaceitero.com.ar', 'Admin');
+    $mail->addAddress('hhyonvbjhksclfrvrl@tmmcv.net', $nombreAfiliado);
+    $mail->Subject = "Reintegro Obra Social";
+    $mail->Body    = $body;
+    $mail->CharSet =  PHPMailer::CHARSET_UTF8;
+    if($archivo['size'] > 0){
+      $mail->addAttachment($archivo['tmp_name'], $archivo['name']);
+    }
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}

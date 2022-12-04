@@ -31,15 +31,15 @@ $(document).ready(function() {
             { data: "fecha_nacimiento" },
             { data: "id_afiliado" , data:"nro_afiliado",
                 'fnCreatedCell': function (nTd, sData, oData, iRow, iCol) {
-                    
                     $(nTd).html(`
-                        <form method="post" action="./acciones/reintegros.php"  class="form-group">
+                        <form method="post" action="./acciones/reintegros.php"  class="form-group" enctype = "multipart/form-data">
                             <div class="container">
                                 <div class="row row-cols-auto">
+                                
                                     <div class="col-md-6">
                                         <input type='hidden' name='emailAfil' value=${oData['email']}/>
-                                        <input type='hidden' name='nombrecompleto' value=${oData['nombrecompleto']}/>
-                                        <input required type="file" class="btn" name="archivo" id="archivo" accept=".pdf">
+                                        <input type='hidden' name='nombrecompleto' value=${oData['nombrecompleto'].replaceAll(' ','-')}/>
+                                        <input required type="file" class="btn" name="archivo" id="archivo" accept=".pdf">                                    
                                     </div>
                                     <div class="col">
                                         <button class="login-button" type="submit" id="cargar">Enviar Email</button>
@@ -47,6 +47,7 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </form>
+                        
                     `);
                 }
             }

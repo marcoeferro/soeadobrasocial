@@ -1,7 +1,13 @@
 <?php 
 //CONEXIÓN------------------------------------------------------------
     include_once("../../conexion.php"); //poner esto en un archivo
-    $sql="SELECT id_afiliado, CONCAT(nro_afiliado,'-',nro_asociado) AS datosafiliado, nombre as nombrecompleto, dni, fecha_nacimiento, nro_afiliado
+    $sql="SELECT id_afiliado, 
+    CONCAT(nro_afiliado,'-',nro_asociado) AS datosafiliado, 
+    nombre as nombrecompleto, 
+    dni, 
+    fecha_nacimiento, 
+    nro_afiliado,
+    email
     FROM afiliados
     WHERE eliminado = 0 AND (nro_asociado = '0'  OR nro_asociado = '00')
     ORDER BY nro_afiliado;";
