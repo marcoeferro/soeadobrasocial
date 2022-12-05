@@ -19,8 +19,8 @@ use PHPMailer\PHPMailer\Exception;
 $mail = new PHPMailer(true);
 
 try {
-    $mail->setFrom('info@sindicatoaceitero.com.ar', 'Admin');
-    $mail->addAddress('hhyonvbjhksclfrvrl@tmmcv.net', $nombreAfiliado);
+    $mail->setFrom("info@sindicatoaceitero.com.ar", 'Admin');
+    $mail->addAddress($mailAfiliado, $nombreAfiliado);
     $mail->Subject = "Reintegro Obra Social";
     $mail->Body    = $body;
     $mail->CharSet =  PHPMailer::CHARSET_UTF8;
@@ -28,7 +28,9 @@ try {
       $mail->addAttachment($archivo['tmp_name'], $archivo['name']);
     }
     $mail->send();
-    echo 'Message has been sent';
+    
+    header('Location: ../Reintegros.php');
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //$error =  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    header('Location: ../Reintegros.php');
 }

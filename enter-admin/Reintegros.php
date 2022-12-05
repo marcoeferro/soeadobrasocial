@@ -19,7 +19,6 @@ if (!isset($_SESSION['admin'])) {
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/jumbotron/" />
 
     <script src="../js/notificaciones.js"></script>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="../css/styles.css" rel="stylesheet" />
@@ -27,12 +26,13 @@ if (!isset($_SESSION['admin'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     <script>
         $(window).load(function() {
             $('#page-loader').fadeOut(500);
         });
     </script>
-
+    
 </head>
 
 <body class="admin">
@@ -103,8 +103,7 @@ if (!isset($_SESSION['admin'])) {
             </div>
         </div>
     </div>
-
-    <!-- Modal segundo-->
+    <!-- Modal Cerrar Sesion-->
     <div class="modal fade" id="closeModal" tabindex="-1" aria-labelledby="closeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -124,27 +123,24 @@ if (!isset($_SESSION['admin'])) {
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Email-->
+    <div class="modal fade" id="mailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Afiliado</h5>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Email Enviado</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    ¿Desea eliminar un afiliado?
-                </div>
+            <div class="modal-body">
+                El Email Fue Enviado Con Exito
+            </div>
                 <div class="modal-footer">
-                    <input type="hidden" id='eliminarid' name='eliminarid'>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" onclick=eliminar()>Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
-
+    
 </body>
 
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -160,18 +156,16 @@ if (!isset($_SESSION['admin'])) {
 <script src="https://nightly.datatables.net/select/js/dataTables.select.js?_=9a6592f8d74f8f520ff7b22342fa1183"></script>
 <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 
-<script src="./js/dataTableAfiliadosReintegros.js"></script>
 <script>
-    function alerta(id) {
-        $('#eliminarid').val(id);
-        $('#exampleModal').modal('show');
-    }
-
-    function eliminar() {
-        let id = $('#eliminarid').val();
-
-        $('#form_eliminar_' + id).submit();
-    }
+    $(document).ready(function (){
+        var url = "<?php echo $message; ?>";
+        console.log(url);
+        /* $("#iframe_modal").attr("src", url);
+        $('#myModal').modal('show');
+        $('#mailModal').modal('show'); */
+    })
+    
 </script>
 
+<script src="./js/dataTableAfiliadosReintegros.js"></script>
 </html>

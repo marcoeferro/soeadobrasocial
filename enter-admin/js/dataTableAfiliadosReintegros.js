@@ -39,7 +39,7 @@ $(document).ready(function() {
                                     <div class="col-md-6">
                                         <input type='hidden' name='emailAfil' value=${oData['email']}/>
                                         <input type='hidden' name='nombrecompleto' value=${oData['nombrecompleto'].replaceAll(' ','-')}/>
-                                        <input required type="file" class="btn" name="archivo" id="archivo" accept=".pdf">                                    
+                                        <input required type="file" class="btn" name="archivo" id="archivo" accept="application/pdf">                                    
                                     </div>
                                     <div class="col">
                                         <button class="login-button" type="submit" id="cargar">Enviar Email</button>
